@@ -13,6 +13,6 @@ class ValidatorFacade extends Facade
      */
     protected static function getFacadeAccessor()
     {
-        return 'mailboxlayer.validator';
+        return 'mailboxlayer';
     }
 }

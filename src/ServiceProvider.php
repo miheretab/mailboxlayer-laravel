@@ -16,7 +16,8 @@ class ServiceProvider extends ServiceProviderContract
     public function boot()
     {
         Validator::extend('mailboxlayer', function ($attribute, $value, $parameters, $validator) {
-            MailboxlayerFacade::validateExtend($attribute, $value, $parameters, $validator);
+            return MailboxlayerFacade::make()
+                ->validateExtend($attribute, $value, $parameters, $validator);
         });
     }
 
@@ -27,9 +28,9 @@ class ServiceProvider extends ServiceProviderContract
      */
     public function register()
     {
-        $this->app->bind('mailboxlayer.validator', function ($app) {
+        $this->app->singleton('mailboxlayer', function ($app) {
             $config = $app['config'];
-            return new Validator(
+            return new ValidatorFactory(
                 $config->get('services.mailboxlayer.access_key'),
                 $config->get('services.mailboxlayer.https', true)
             );
@@ -42,6 +43,6 @@ class ServiceProvider extends ServiceProviderContract
      */
     public function provides()
     {
-        return ['mailboxlayer.validator'];
+        return ['mailboxlayer'];
     }
 }
