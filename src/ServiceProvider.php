@@ -4,7 +4,7 @@ namespace Bagf\Mailboxlayer;
 
 use Illuminate\Support\ServiceProvider;
 
-class SentryLaravelServiceProvider extends ServiceProvider
+class ServiceProvider extends ServiceProvider
 {
     /**
      * Bootstrap the application events.
