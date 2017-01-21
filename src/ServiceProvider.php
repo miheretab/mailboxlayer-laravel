@@ -2,9 +2,9 @@
 
 namespace Bagf\Mailboxlayer;
 
-use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\ServiceProvider as ServiceProviderContract;
 
-class ServiceProvider extends ServiceProvider
+class ServiceProvider extends ServiceProviderContract
 {
     /**
      * Bootstrap the application events.
