@@ -3,6 +3,8 @@
 namespace Bagf\Mailboxlayer;
 
 use Illuminate\Support\ServiceProvider as ServiceProviderContract;
+use Bagf\Mailboxlayer\ValidatorFacade as MailboxlayerFacade;
+use Validator;
 
 class ServiceProvider extends ServiceProviderContract
 {
@@ -13,7 +15,9 @@ class ServiceProvider extends ServiceProviderContract
      */
     public function boot()
     {
-        Validator::extend('mailboxlayer', '\Bagf\Mailboxlayer\ValidatorFacade@validateExtend');
+        Validator::extend('mailboxlayer', function ($attribute, $value, $parameters, $validator) {
+            MailboxlayerFacade::validateExtend($attribute, $value, $parameters, $validator);
+        });
     }
 
     /**
