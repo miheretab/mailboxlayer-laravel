@@ -1,0 +1,18 @@
+<?php
+
+namespace Bagf\Mailboxlayer;
+
+use Illuminate\Support\Facades\Facade;
+
+class ValidatorFacade extends Facade
+{
+    /**
+     * Get the registered name of the component.
+     *
+     * @return string
+     */
+    protected static function getFacadeAccessor()
+    {
+        return 'mailboxlayer.validator';
+    }
+}
