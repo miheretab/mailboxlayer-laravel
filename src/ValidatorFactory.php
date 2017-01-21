@@ -20,19 +20,23 @@ class ValidatorFactory
 
     public function make()
     {
-        return new Validator(
+        $validator = new Validator(
             $this->accessKey,
             $this->https
         );
+        
+        $validator->setResponseHistory($this->responses);
+        
+        return $validator;
     }
     
     public function hasSuggested($email)
     {
-        return !empty($this->responses->get(trim($email).".did_you_mean", ''));
+        return !empty(array_get($this->responses->get(trim($email)), 'did_you_mean', ''));
     }
     
     public function getSuggestionFor($email)
     {
-        return $this->responses->get(trim($email).".did_you_mean", '');
+        return array_get($this->responses->get(trim($email)), 'did_you_mean', '');
     }
 }

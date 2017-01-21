@@ -8,6 +8,8 @@ use Validator;
 
 class ServiceProvider extends ServiceProviderContract
 {
+    protected $emails = [];
+    
     /**
      * Bootstrap the application events.
      *
@@ -16,8 +18,33 @@ class ServiceProvider extends ServiceProviderContract
     public function boot()
     {
         Validator::extend('mailboxlayer', function ($attribute, $value, $parameters, $validator) {
-            return MailboxlayerFacade::make()
+            $pass = MailboxlayerFacade::make()
                 ->validateExtend($attribute, $value, $parameters, $validator);
+            
+            if (!$pass) {
+                $this->emails[count($this->emails)] = $value;
+            }
+            
+            return $pass;
+        });
+        
+        Validator::replacer('mailboxlayer', function($message, $attribute, $rule, $parameters) {
+            if (!isset($this->emails[0])) {
+                return str_replace(':suggestion', '', $message);
+            }
+            
+            $email = trim($this->emails[0]);
+            
+            unset($this->emails[0]);
+            $this->emails = array_values($this->emails);
+            
+            if (!MailboxlayerFacade::hasSuggested($email)) {
+                return str_replace(':suggestion', '', $message);
+            }
+            
+            $suggestion = MailboxlayerFacade::getSuggestionFor($email);
+            $suggestText = trans('validation.mailboxlayer_suggest', ['email' => $suggestion]);
+            return str_replace(':suggestion', $suggestText, $message);
         });
     }
 
