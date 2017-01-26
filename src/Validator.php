@@ -34,7 +34,7 @@ class Validator
             call_user_func([ $this, $method ]);
         }
         
-        return $this->validate(trim($value));
+        return $this->validate(strtolower(trim($value)));
     }
     
     public function validate($email)
@@ -53,7 +53,7 @@ class Validator
             throw new ErrorException("Mailboxlayer API: Error code {$code} {$info}");
         }
         
-        $theirEmail = array_get($response, 'email', '');
+        $theirEmail = strtolower(array_get($response, 'email', ''));
         if ($theirEmail !== $email) {
             throw new ErrorException("Mailboxlayer API: Incorrect address received. Sent {$email} but confirmed {$theirEmail}");
         }
