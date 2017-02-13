@@ -53,10 +53,10 @@ class Validator
             throw new ErrorException("Mailboxlayer API: Error code {$code} {$info}");
         }
         
-        $theirEmail = strtolower(array_get($response, 'email', ''));
-        if ($theirEmail !== $email) {
-            throw new ErrorException("Mailboxlayer API: Incorrect address received. Sent {$email} but confirmed {$theirEmail}");
-        }
+//        $theirEmail = strtolower(array_get($response, 'email', ''));
+//        if ($theirEmail !== $email) {
+//            throw new ErrorException("Mailboxlayer API: Incorrect address received. Sent {$email} but confirmed {$theirEmail}");
+//        }
         
         foreach ($this->booleans as $key => $bool) {
             if (!isset($response[$key])) {
