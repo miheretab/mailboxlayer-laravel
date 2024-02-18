@@ -3,7 +3,7 @@
     "description": "Adds Laravel 5 validation rule for checking e-mail addresses using the mailboxlayer API",
     "type": "library",
     "require": {
-        "illuminate/support": "10.44.0",
+        "illuminate/support": "9.0.x",
         "guzzlehttp/guzzle": "7.8.1"
     },
     "license": "Unlicense",
