@@ -4,12 +4,17 @@
     "type": "library",
     "require": {
         "illuminate/support": "5.*",
-        "guzzlehttp/guzzle": "6.*"
+        "guzzlehttp/guzzle": "7.8.1"
     },
     "license": "Unlicense",
     "autoload": {
         "psr-4": {
             "Bagf\\Mailboxlayer\\": "./src"
+        }
+    },
+    "config": {
+        "allow-plugins": {
+            "kylekatarnls/update-helper": true
         }
     }
 }
