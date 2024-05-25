@@ -6,6 +6,7 @@ use GuzzleHttp\Client;
 use ArrayAccess;
 use ErrorException;
 use Illuminate\Support\Str;
+use Illuminate\Support\Arr;
 
 class Validator
 {
@@ -47,14 +48,14 @@ class Validator
         $response = $this->resolveResponse($email);
         
         // if the error property isnt set it implys successful response
-        if (array_get($response, 'success', true) !== true) {
-            $code = array_get($response, 'error.code');
-            $info = array_get($response, 'error.info');
+        if (Arr::get($response, 'success', true) !== true) {
+            $code = Arr::get($response, 'error.code');
+            $info = Arr::get($response, 'error.info');
             
             throw new ErrorException("Mailboxlayer API: Error code {$code} {$info}");
         }
         
-//        $theirEmail = strtolower(array_get($response, 'email', ''));
+//        $theirEmail = strtolower(Arr::get($response, 'email', ''));
 //        if ($theirEmail !== $email) {
 //            throw new ErrorException("Mailboxlayer API: Incorrect address received. Sent {$email} but confirmed {$theirEmail}");
 //        }
