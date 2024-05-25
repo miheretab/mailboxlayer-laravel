@@ -5,6 +5,7 @@ namespace Bagf\Mailboxlayer;
 use GuzzleHttp\Client;
 use ArrayAccess;
 use ErrorException;
+use Illuminate\Support\Str;
 
 class Validator
 {
