@@ -1,13 +1,24 @@
+This is forked version upgraded to work for laravel 9
+
 # mailboxlayer-laravel
-Adds Laravel 5 validation rule for checking e-mail addresses using the mailboxlayer API
+Adds Laravel 9 validation rule for checking e-mail addresses using the mailboxlayer API
 
 ## Installation
 
 ```sh
-composer require bagf/mailboxlayer-laravel
+composer require bagf/mailboxlayer-laravel "dev-upgrade-laravel-9"
 ```
 
-Add this service provider to your Laravel 5 app providers array in `config/app.php`
+put this in your composer.json
+```sh
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/miheretab/mailboxlayer-laravel"
+        }
+    ],
+```
+Add this service provider to your Laravel 9 app providers array in `config/app.php`
 
 ```php
         Bagf\Mailboxlayer\ServiceProvider::class,
