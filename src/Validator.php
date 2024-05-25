@@ -31,7 +31,7 @@ class Validator
     public function validateExtend($attribute, $value, $parameters, $validator)
     {
         foreach ($parameters as $parameter) {
-            $method = "must".Str::studly_case($parameter);
+            $method = "must".Str::studly($parameter);
             call_user_func([ $this, $method ]);
         }
         
