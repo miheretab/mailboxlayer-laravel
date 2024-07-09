@@ -3,6 +3,7 @@
 namespace Bagf\Mailboxlayer;
 
 use Illuminate\Support\Collection;
+use Illuminate\Support\Arr;
 
 class ValidatorFactory
 {
@@ -32,11 +33,11 @@ class ValidatorFactory
     
     public function hasSuggested($email)
     {
-        return !empty(array_get($this->responses->get(trim($email)), 'did_you_mean', ''));
+        return !empty(Arr::get($this->responses->get(trim($email)), 'did_you_mean', ''));
     }
     
     public function getSuggestionFor($email)
     {
-        return array_get($this->responses->get(trim($email)), 'did_you_mean', '');
+        return Arr::get($this->responses->get(trim($email)), 'did_you_mean', '');
     }
 }
